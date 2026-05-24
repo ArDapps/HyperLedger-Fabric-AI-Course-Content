@@ -1,5 +1,9 @@
 # Hyperledger Fabric Consultant — Study & Practice Plan
 
+
+<img width="1672" height="941" alt="ChatGPT Image May 24, 2026, 01_31_46 PM" src="https://github.com/user-attachments/assets/825ae5b5-75a9-49dc-98e0-4730f9c71f8f" />
+
+
 > خطة مذاكرة وتطبيق عملي لوظيفة: **Blockchain Consultant – Hyperledger Fabric Expert**  
 > Prepared for: **Bahaa Taha**  
 > Goal: تجهيزك للتقديم، المقابلة، وبناء مشاريع عملية تثبت خبرتك في Hyperledger Fabric وEnterprise Blockchain.
