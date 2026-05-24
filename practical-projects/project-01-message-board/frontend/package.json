@@ -1,0 +1,27 @@
+{
+  "name": "fabric-message-board-frontend",
+  "version": "1.0.0",
+  "description": "React dashboard for the Hyperledger Fabric message board project",
+  "x_arabic_notes": [
+    "هذا الملف يصف واجهة React الخاصة بمشروع الرسائل.",
+    "script dev يشغل Vite development server.",
+    "script build يبني نسخة production من الواجهة.",
+    "lucide-react يوفر أيقونات جاهزة للأزرار والحالات.",
+    "VITE_ORG1_API_URL و VITE_ORG2_API_URL يمكن استخدامهما لتغيير روابط الـ API بدون تعديل الكود."
+  ],
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.2",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^8.0.14"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

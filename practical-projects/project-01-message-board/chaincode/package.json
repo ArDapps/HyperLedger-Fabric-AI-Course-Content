@@ -1,0 +1,23 @@
+{
+  "name": "fabric-message-board-chaincode",
+  "version": "1.0.0",
+  "description": "Hyperledger Fabric chaincode for a shared message board",
+  "x_arabic_notes": [
+    "هذا الملف يصف مشروع الـ chaincode الخاص بلوحة الرسائل.",
+    "main يحدد ملف الدخول الذي يصدر العقد لـ Hyperledger Fabric.",
+    "script start هو الأمر الذي يشغله Fabric container عند تشغيل chaincode.",
+    "fabric-contract-api يوفر Contract class التي نبني عليها smart contract.",
+    "fabric-shim يوفر طبقة التواصل المنخفضة بين chaincode و peer."
+  ],
+  "main": "index.js",
+  "scripts": {
+    "start": "fabric-chaincode-node start"
+  },
+  "dependencies": {
+    "fabric-contract-api": "^2.5.4",
+    "fabric-shim": "^2.5.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

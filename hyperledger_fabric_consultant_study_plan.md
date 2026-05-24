@@ -395,6 +395,23 @@ Docker
 
 Basic Hyperledger Fabric project to prove you can build and deploy a working network.
 
+### First Practical Variant: Message Board Network
+
+ابدأ بالمشروع الأبسط الموجود في:
+
+```text
+practical-projects/project-01-message-board
+```
+
+فكرته:
+
+- Org1 يضيف رسالة.
+- Org2 يقرأ نفس الرسالة.
+- Chaincode يخزن الرسائل في ledger.
+- REST API يربط المستخدمين بـ Fabric Gateway.
+
+هذا المشروع يعلمك transaction flow بشكل مباشر قبل الدخول في asset transfer أو supply chain.
+
 ### Architecture
 
 ```text

@@ -1,0 +1,26 @@
+{
+  "name": "fabric-message-board-api",
+  "version": "1.0.0",
+  "description": "REST API for the Hyperledger Fabric message board project",
+  "x_arabic_notes": [
+    "هذا الملف يصف REST API الذي يتعامل مع Hyperledger Fabric Gateway.",
+    "main يشير إلى src/server.js لأنه ملف تشغيل Express server.",
+    "script start يشغل الـ API محليًا.",
+    "script check يفحص syntax ملفات JavaScript بدون تشغيل السيرفر.",
+    "express يستخدم لبناء endpoints، و fabric-gateway يستخدم لاستدعاء chaincode، و grpc-js يستخدم للاتصال بالـ peer."
+  ],
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "check": "node --check src/server.js && node --check src/fabricGateway.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.10.9",
+    "@hyperledger/fabric-gateway": "^1.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
