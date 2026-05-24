@@ -386,21 +386,51 @@ textarea:focus {
 .history-item {
   align-items: flex-start;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   padding: 12px;
   border-radius: 8px;
   background: #f8fafc;
 }
 
-.history-item span {
+.history-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.history-item span,
+.history-field span {
   color: #64748b;
   font-size: 0.86rem;
+}
+
+.history-field {
+  display: grid;
+  width: 100%;
+  gap: 5px;
 }
 
 code {
   direction: ltr;
   color: #31515f;
   overflow-wrap: anywhere;
+}
+
+pre {
+  max-height: 220px;
+  margin: 0;
+  padding: 10px;
+  overflow: auto;
+  border-radius: 8px;
+  background: #eef4f6;
+  color: #1f2937;
+  direction: ltr;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  text-align: left;
+  white-space: pre-wrap;
 }
 
 .spin {

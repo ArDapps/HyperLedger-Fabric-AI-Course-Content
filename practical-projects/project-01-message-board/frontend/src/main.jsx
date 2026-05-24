@@ -302,9 +302,20 @@ function App() {
 
               {history.map((item) => (
                 <article className="history-item" key={item.txId}>
-                  <strong>{item.isDelete ? 'Delete' : 'Write'}</strong>
-                  <span>{formatDate(item.timestamp)}</span>
-                  <code>{shortTx(item.txId)}</code>
+                  <div className="history-row">
+                    <strong>{item.isDelete ? 'Delete' : 'Write'}</strong>
+                    <span>{formatDate(item.timestamp)}</span>
+                  </div>
+
+                  <div className="history-field">
+                    <span>Transaction ID</span>
+                    <code>{item.txId || 'no tx id'}</code>
+                  </div>
+
+                  <div className="history-field">
+                    <span>Stored Value</span>
+                    <pre>{formatJson(item.value)}</pre>
+                  </div>
                 </article>
               ))}
             </div>
@@ -336,18 +347,23 @@ function formatDate(value) {
     return 'غير معروف';
   }
 
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return 'وقت غير صالح';
+  }
+
   return new Intl.DateTimeFormat('ar-EG', {
     dateStyle: 'medium',
     timeStyle: 'short'
-  }).format(new Date(value));
+  }).format(date);
 }
 
-function shortTx(txId) {
-  if (!txId) {
-    return 'no tx id';
+function formatJson(value) {
+  if (value === null || value === undefined) {
+    return 'null';
   }
 
-  return `${txId.slice(0, 10)}...${txId.slice(-6)}`;
+  return JSON.stringify(value, null, 2);
 }
 
 createRoot(document.getElementById('root')).render(<App />);

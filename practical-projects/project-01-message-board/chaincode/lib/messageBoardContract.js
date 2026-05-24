@@ -107,9 +107,7 @@ class MessageBoardContract extends Contract {
       if (result.value) {
         history.push({
           txId: result.value.txId,
-          timestamp: result.value.timestamp
-            ? new Date(result.value.timestamp.seconds.low * 1000).toISOString()
-            : null,
+          timestamp: this._timestampToISOString(result.value.timestamp),
           isDelete: result.value.isDelete,
           value: result.value.value && result.value.value.length > 0
             ? JSON.parse(result.value.value.toString('utf8'))
@@ -142,11 +140,48 @@ class MessageBoardContract extends Contract {
   // مهم جدًا: لا نستخدم new Date() مباشرة في chaincode.
   // الـ chaincode لازم يكون deterministic، لذلك نستخدم timestamp الخاص بالـ transaction من Fabric.
   _txTimestampToISOString(ctx) {
-    const timestamp = ctx.stub.getTxTimestamp();
-    const seconds = Number(timestamp.seconds.low);
-    const nanos = timestamp.nanos || 0;
+    return this._timestampToISOString(ctx.stub.getTxTimestamp());
+  }
 
-    return new Date((seconds * 1000) + Math.floor(nanos / 1000000)).toISOString();
+  // Fabric timestamp ممكن يرجع seconds كـ number أو string أو Long object.
+  // هذه الدالة توحد كل الأشكال وتمنع خطأ Invalid time value.
+  _timestampToISOString(timestamp) {
+    if (!timestamp || timestamp.seconds === undefined || timestamp.seconds === null) {
+      return null;
+    }
+
+    const seconds = this._longLikeToNumber(timestamp.seconds);
+    const nanos = Number(timestamp.nanos || 0);
+    const milliseconds = (seconds * 1000) + Math.floor(nanos / 1000000);
+    const date = new Date(milliseconds);
+
+    if (Number.isNaN(date.getTime())) {
+      return null;
+    }
+
+    return date.toISOString();
+  }
+
+  _longLikeToNumber(value) {
+    if (typeof value === 'number') {
+      return value;
+    }
+
+    if (typeof value === 'string') {
+      return Number(value);
+    }
+
+    if (typeof value.toNumber === 'function') {
+      return value.toNumber();
+    }
+
+    if (value.low !== undefined) {
+      const low = Number(value.low);
+      const high = Number(value.high || 0);
+      return (high * 0x100000000) + (low >>> 0);
+    }
+
+    return Number(value);
   }
 
   // iterator في Fabric يرجع النتائج واحدة واحدة.
